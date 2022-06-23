@@ -1,6 +1,6 @@
 import org.ejml.simple.SimpleMatrix;
 
-public class Model2 {
+public class SimpleLinearSystemPendulumModel {
     public static void main(String[] args) {
 
         //3b1b romeo juliet
@@ -17,24 +17,24 @@ public class Model2 {
 
 
         A.set(0, 0, 0);
-        A.set(0, 1, -1);
-        A.set(1, 0, 1);
-        A.set(1, 1, 0);
+        A.set(0, 1, 1);
+        A.set(1, 0, -2);
+        A.set(1, 1, -0.4);
 
         B.set(0, 0, 0);
-        B.set(1, 0, 0);
+        B.set(1, 0, 1);
 
-        x.set(0, 0, 1.0);
+        x.set(0, 0, Math.PI/2);
         x.set(1, 0, 0.0);
 
         u.set(0, 0, 0);
 
-//        for(int i = 0;i<Math.PI*2/0.02;i++){
+        for(int i = 0;i<50;i++){
             x = step(A, B, x, u, states, inputs);
 
-//            System.out.print("[" + x.get(0, 0) + ", ");
-//            System.out.println(x.get(1, 0) + "]");
-//        }
+            System.out.print("[" + x.get(0, 0) + ", ");
+            System.out.println(x.get(1, 0) + "]");
+        }
 
     }
 

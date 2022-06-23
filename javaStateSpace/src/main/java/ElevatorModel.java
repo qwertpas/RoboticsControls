@@ -1,6 +1,6 @@
 import org.ejml.simple.SimpleMatrix;
 
-public class Model {
+public class ElevatorModel {
     public static void main(String[] args) {
 
         //Elevator
