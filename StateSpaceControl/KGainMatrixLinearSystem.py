@@ -1,8 +1,10 @@
+
 import numpy as np
 from scipy.linalg import expm, sinm, cosm
 import matplotlib.pyplot as plt
 import scipy.linalg as LA
 
+#Pendulum
 A = np.array([[0, 1],
               [-2, -0.4]])
 
