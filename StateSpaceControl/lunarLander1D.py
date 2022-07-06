@@ -17,17 +17,17 @@ x = np.array([[3],
 
 u = np.array([[-0.5]])
 
-os = np.array([3])
-
-ss = np.array([0])
-
 r = np.array([[0],
               [0]])
 
 Q = [[1.0, 0],
-     [0, 0.2]]
+     [0, 0.1]]
 
-R = [[0.0]]
+R = [[0.00]]
+
+os = np.array([3])
+
+ss = np.array([0])
 
 
 for i in range(0, 100):
@@ -40,34 +40,31 @@ for i in range(0, 100):
 
     error = np.subtract(x, r);
 
+    Ad = tmp[np.ix_([0, 1], [0, 1])]
+    Bd = tmp[np.ix_([0, 1], [2])]
+
     #Start LQR
-    n = 50
+    n = 100
 
     P = [None] * (n+1)
 
     Qf = Q
     P[n] = Qf
-
+    print("t", P[n])
     for i in range(n, 0, -1):
-        P[i-1] = Q + A.T @ P[i] @ A - (A.T @ P[i] @ B) @ np.linalg.pinv(R + B.T @ P[i] @ B) @ (B.T @ P[i] @ A)
-        #print(P[i-1], "\n")
-        #P[i-1] = LA.solve_discrete_are(A, B, Q, R, s=P[i])
+        P[i-1] = Q + Ad.T @ P[i] @ Ad - (Ad.T @ P[i] @ Bd) @ np.linalg.pinv(R + Bd.T @ P[i] @ Bd) @ (Bd.T @ P[i] @ Ad)
 
     K  = [None] * n
     uS = [None] * n
 
 
     for i in range(n):
-        K[i] = -np.linalg.pinv(R + B.T @ P[i+1] @ B) @ B.T @ P[i+1] @ A
-        print("P", P[i+1])
+        K[i] = -np.linalg.pinv(R + Bd.T @ P[i+1] @ Bd) @ Bd.T @ P[i+1] @ Ad
         uS[i] = K[i] @ error
+        #print("K", K[i])
     #uS[n-1] is optimial input
 
     #End LQR
-
-    Ad = tmp[np.ix_([0, 1], [0, 1])]
-    Bd = tmp[np.ix_([0, 1], [2])]
-
     x = np.add(np.matmul(Ad, x), np.matmul(Bd, uS[n-1]))
     os=np.append(os, x[0, 0])
     ss=np.append(ss, x[1, 0])
