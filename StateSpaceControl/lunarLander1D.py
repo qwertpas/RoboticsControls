@@ -21,9 +21,9 @@ r = np.array([[0],
               [0]])
 
 Q = [[1.0, 0],
-     [0, 0.1]]
+     [0, 0.15]]
 
-R = [[0.00]]
+R = [[0.015]]
 
 os = np.array([3])
 
@@ -71,6 +71,8 @@ for i in range(0, 100):
 
 
     plt.plot(ss, os, marker="o", markerfacecolor="r")
+    plt.axvline(x=0, c="black", label="x=0")
+    plt.axhline(y=0, c="black", label="y=0")
     plt.xlim([-4, 4])
     plt.ylim([-4, 4])
     plt.draw()
