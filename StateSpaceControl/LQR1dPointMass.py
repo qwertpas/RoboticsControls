@@ -3,7 +3,6 @@ from scipy.linalg import expm, sinm, cosm
 import matplotlib.pyplot as plt
 import scipy.linalg as LA
 
-#Pendulum
 A = np.array([[0, 1],
               [0, 0]])
 
@@ -50,7 +49,6 @@ for i in range(0, 100):
 
     Qf = Q
     P[n] = Qf
-    print("t", P[n])
     for i in range(n, 0, -1):
         P[i-1] = Q + Ad.T @ P[i] @ Ad - (Ad.T @ P[i] @ Bd) @ np.linalg.pinv(R + Bd.T @ P[i] @ Bd) @ (Bd.T @ P[i] @ Ad)
 
@@ -76,7 +74,7 @@ for i in range(0, 100):
     plt.xlim([-4, 4])
     plt.ylim([-4, 4])
     plt.draw()
-    plt.pause(0.03)
+    plt.pause(0.015)
 
 plt.show()
 
