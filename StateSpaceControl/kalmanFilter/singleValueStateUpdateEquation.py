@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import random as rnd
 
 realValue = 2.0
-maxVariance = 0.8
+maxVariance = 0.5
 xnn1 = 0
 xnn = 0
 
@@ -23,10 +23,10 @@ for i in range(1, 100):
     filtered = np.append(filtered, xnn)
     t = np.append(t, i)
 
-    plt.plot(t, value, marker = "o", markerfacecolor="r")
-    plt.plot(t, measures, marker = "o", markerfacecolor="b")
+    plt.plot(t, value)
+    plt.plot(t, measures, linestyle="--")
     plt.plot(t, filtered, marker = "o", markerfacecolor="g")
     plt.draw()
-    plt.pause(0.03)
+    plt.pause(0.005)
 
 plt.show()
