@@ -11,7 +11,7 @@ dt = 0.02 #timestep
 x = np.array([[0], [0.0], [0], [0], [0], [0]])
 
 #input = [u1, u2, g]
-u = np.array([[10], [0], [9.8]])
+u = np.array([[15], [0.51], [9.8]])
 #u1 = F1 + F2 = thrust total
 #u2 = (L/2) * (F1 - F2) = moment 
 
